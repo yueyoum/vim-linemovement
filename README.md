@@ -18,15 +18,28 @@ or [pathogen](https://github.com/tpope/vim-pathogen)
 
 ## Key bindings
 
-`ctrl-shift-j` moving down
+`ctrl-Up` moving up    *Up is up arrow key*
 
-`ctrl-shift-k` moving up
+`ctrl-Down` moving down   *down is down arrow key*
 
 `ctrl-shift-o` adding empty lines at the above and bellow of current line.
 **just work in normal mode**
 
 
-#### move one line or block in any mode. using `ctrl-shift-j`, `ctrl-shift-k`
+### Custom
+
+You can change the default key bindings.
+
+Add the following line in your `.vimrc`
+
+    let g:linemovement_up="<c-Up>"
+    let g:linemovement_down="<c-Down>"
+
+
+replace the key bindings what ever you want!
+
+
+#### move one line or block in any mode.
 
 ![moving_line](http://i1297.photobucket.com/albums/ag23/yueyoum/line1_zps05d31091.gif)
 

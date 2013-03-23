@@ -2,7 +2,7 @@
 " Author            Wang Chao <yueyoum@gmail.com>
 " Started           2013-03-23
 " Updated           2013-03-23
-" Version           0.1.0
+" Version           0.2.0
 
 
 if exists("g:loaded_linemovement") || &cp
@@ -28,20 +28,32 @@ function! linemovement#MoveBlock(startline, endline, new_line_pos)
 endfunction
 
 
+if !exists("g:linemovement_up")
+    let g:linemovement_up="<c-Up>"
+endif
 
-" Moving block
-vnoremap <silent> <c-s-k> :call linemovement#MoveBlockUp()<CR>
-vnoremap <silent> <c-s-j> :call linemovement#MoveBlockDown()<CR>
+if !exists("g:linemovement_down")
+    let g:linemovement_down="<c-Down>"
+endif
 
-" Moving one line
-nnoremap <silent> <c-s-j> :m+1<CR>
-nnoremap <silent> <c-s-k> :m-2<CR>
-inoremap <silent> <c-s-j> <ESC>:m+1<CR>gi
-inoremap <silent> <c-s-k> <ESC>:m-2<CR>gi
+
+if !exists("g:linemovent_mapped_keys")
+    " Moving one line
+    execute "nnoremap <silent> " . g:linemovement_up . " :m-2<CR>"
+    execute "nnoremap <silent> " . g:linemovement_down . " :m+1<CR>"
+    execute "inoremap <silent> " . g:linemovement_up . " <ESC>:m-2<CR>gi"
+    execute "inoremap <silent> " . g:linemovement_down . " <ESC>:m+1<CR>gi"
+
+    " Moving block
+    execute "vnoremap <silent> " . g:linemovement_up . " :call linemovement#MoveBlockUp()<CR>"
+    execute "vnoremap <silent> " . g:linemovement_down . " :call linemovement#MoveBlockDown()<CR>"
+
+    let g:linemovent_mapped_keys = 1
+endif
 
 
 " Add empty line of above and bellow of one line
-noremap <silent> <c-s-o> O<ESC>jo<ESC>k
+noremap <silent> <c-o> O<ESC>jo<ESC>k
 
 
 
